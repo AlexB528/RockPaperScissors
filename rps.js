@@ -9,12 +9,6 @@ function getComputerChoice () {
       }
 }
 
-var playerSelection;
-
-
-var computerSelection;
-
-
 function playRound (playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         return "Tie! ";
@@ -25,47 +19,58 @@ function playRound (playerSelection, computerSelection) {
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         return "You Win! Scissors beat paper!";
     } else if (computerSelection == "rock" && playerSelection == "scissors") {
-    return "You Lose! Rock beats scissors!";
+        return "You Lose! Rock beats scissors!";
     } else if (computerSelection == "paper" && playerSelection == "rock") {
-    return "You Lose! Paper beats rock!";
+        return "You Lose! Paper beats rock!";
     } else if (computerSelection == "scissors" && playerSelection == "paper") {
-    return "You Lose! Scissors beat paper!";
+        return "You Lose! Scissors beat paper!";
     }
     }
 
-    var w = 0;
-    var l = 0;
-    var t = 0;
-    var r = "starting";
+var w = 0;
+var l = 0;
+var t = 0;
+var r = "starting";
 
-function game (playerSelection, computerSelection) {
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Rocks, paper, or scissors?");
+    const container = document.querySelector('#container');
+    const content = document.createElement('div');
+    container.appendChild(content);
+
+
+    const containertwo = document.querySelector('#containertwo');
+    const contenttwo = document.createElement('div');
+    containertwo.appendChild(contenttwo);
+
+    btntest = document.querySelector('#btntest');
+
+    function aaa (e) {
+        let playerSelection = e.srcElement.innerText;
         playerSelection = playerSelection.toLowerCase();
 
-        computerSelection = getComputerChoice();
+        let computerSelection = getComputerChoice();
         computerSelection = computerSelection.toLowerCase();
-
-        r = playRound(playerSelection, computerSelection);
-
-        console.log(r);
-
+        
+        console.log(playerSelection);
+        console.log(computerSelection);
+        r = playRound(playerSelection,computerSelection);
+        
         if (r.slice(4,7) == "Win") {
             w = w + 1;
         } else if (r.slice(4,8) == "Lose") {
             l = l + 1;
-        } else {
-            t = t + 1;
-            i = i - 1;
         }
-     }
-     if (w > l) {
-        return "YOU WIN THE BEST OUT OF FIVE!!!";
-     } else {
-        return "YOU Lose THE BEST OUT OF FIVE!!!";
-     }
+        
+        contenttwo.textContent = 'Wins are '+w+' and losses are '+l;
 
-    }
+        console.log(w);
+        console.log(l);
 
-    console.log(game(playerSelection, computerSelection));
+        if (w == 3) {content.textContent = "YOU WIN THE BEST OUT OF FIVE!!!"}
+        else if (l == 3) {content.textContent = "YOU WIN THE BEST OUT OF FIVE!!!"}
+
+    };
+
+    btns = document.querySelectorAll('#btn')
+    btns.forEach(btn => btn.addEventListener('click', aaa));
+    
 

@@ -1,0 +1,14 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnstyle {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(206, 178, 0);
+}
